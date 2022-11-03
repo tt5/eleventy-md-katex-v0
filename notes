@@ -1,0 +1,3 @@
+npx run build
+cd _site
+surge --domain ill-calendar.surge.sh .

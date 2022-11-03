@@ -1,0 +1,15 @@
+---
+layout: base
+title: Blog
+tags: page
+order: 2
+---
+
+<section class="flex flex-col gap-2">
+    {% for post in collections.post %}
+<div>
+            <a class="underline" href="{{ post.url }}">{{ post.data.title }}</a>
+            {{post.date | postDate}}
+</div>
+    {% endfor %}
+</section>

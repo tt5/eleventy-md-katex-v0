@@ -1,0 +1,7 @@
+<nav class="flex gap-4">
+  {%- for item in collections.page -%}
+  <div>
+    <a class="text-blue-900" href="{{ item.url }}">{{ item.data.title }}</a>
+  </div>
+  {%- endfor -%}
+</nav>

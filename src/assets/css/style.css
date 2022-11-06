@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  background-color: lightcyan;
-}
-
 /**
  * Gruvbox light theme
  *
@@ -151,6 +147,28 @@ pre[class*="language-"] {
 	background: #9d0006; /* red2 */
 }
 
-h1 {
-  @apply text-3xl;
+html {
+  @apply bg-cyan-100 p-4;
 }
+
+h1 {
+  @apply text-3xl pt-4 pb-2 font-bold;
+}
+
+h2 {
+  @apply text-2xl pt-4 pb-2 font-bold;
+}
+
+h3 {
+  @apply text-xl pt-4 pb-2 font-bold;
+}
+
+h4 {
+  @apply text-lg pt-4 pb-2 font-bold;
+}
+
+p {
+  @apply pb-2;
+  hyphens: auto;
+}
+

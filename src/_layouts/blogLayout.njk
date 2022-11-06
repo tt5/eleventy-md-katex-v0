@@ -1,6 +1,7 @@
 ---
 layout: base
 ---
-<h1>{{title}}</h1>
+<section class="w-[35rem]">
 {{ content | latex | safe }}
+</section>
 {% include "partials/_paginate.njk" %}

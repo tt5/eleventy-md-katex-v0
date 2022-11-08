@@ -3,6 +3,7 @@ const { DateTime } = require("luxon");
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 
 module.exports = function (eleventyConfig) {
+  eleventyConfig.setUseGitIgnore(false);
   // Katex Filter
   eleventyConfig.addFilter("latex", (content) => {
     return content.replace(/\$(.+?)\$/g, (_, equation) => {

@@ -6,7 +6,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.setUseGitIgnore(false);
   // Katex Filter
   eleventyConfig.addFilter("latex", (content) => {
-    return content.replace(/\$(.+?)\$/g, (_, equation) => {
+    return content.replace(/\$([\s\S]+?)\$/g, (_, equation) => {
       const cleanEquation = equation
         .replace(/&lt;/g, "<")
         .replace(/&gt;/g, ">");
@@ -18,6 +18,23 @@ module.exports = function (eleventyConfig) {
     });
   });
 
+  eleventyConfig.addFilter("dollarincodepre", (content) => {
+    return content.replace(/<code([\s\S]+?)<\/code>/g, (_, equation) => {
+      const cleanEquation = equation
+        .replace(/\$/g, "DOLLARSIGNREPLACE")
+
+      return "<code" + cleanEquation + "</code>"
+    });
+  });
+
+  eleventyConfig.addFilter("dollarincodepost", (content) => {
+    return content.replace(/\<code([\s\S]+?)<\/code>/g, (_, equation) => {
+      const cleanEquation = equation
+        .replace(/DOLLARSIGNREPLACE/g, "$")
+
+      return "<code" + cleanEquation + "</code>"
+    });
+  });
   eleventyConfig.addPassthroughCopy("src/assets/css/style.css");
 
   eleventyConfig.addCollection("page", function (collections) {

@@ -1,0 +1,15 @@
+---
+layout: base
+title: Math
+tags: page
+order: 3
+---
+
+<section class="flex flex-col gap-2">
+    {% for math in collections.math %}
+<div>
+            <a class="underline" href="{{ math.url }}">{{ math.data.title }}</a>
+            {{math.date | postDate}}
+</div>
+    {% endfor %}
+</section>

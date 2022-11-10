@@ -1,3 +1,4 @@
 _site
 node_modules
-src/blog/*.md
+src/math/*.md
+src/progr/*.md

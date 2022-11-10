@@ -4,12 +4,31 @@ const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.setUseGitIgnore(false);
-  // Katex Filter
+
+  eleventyConfig.addFilter("latexdisplay", (content) => {
+    return content.replace(/\$\$([\s\S]+?)\$\$/g, (_, equation) => {
+      equation = "\\displaystyle " + equation
+      const cleanEquation = equation
+        .replace(/&lt;/g, "<")
+        .replace(/&gt;/g, ">")
+        .replace(/&amp;/g, "&")
+        .replace(/\\\n/g, "\\\\");
+      console.log(equation)
+
+      return katex.renderToString(cleanEquation, {
+        throwOnError: false,
+        output: "html",
+      });
+    });
+  });
+
   eleventyConfig.addFilter("latex", (content) => {
     return content.replace(/\$([\s\S]+?)\$/g, (_, equation) => {
       const cleanEquation = equation
         .replace(/&lt;/g, "<")
-        .replace(/&gt;/g, ">");
+        .replace(/&gt;/g, ">")
+        .replace(/&amp;/g, "&")
+        .replace(/\\\n/g, "\\\\");
 
       return katex.renderToString(cleanEquation, {
         throwOnError: false,

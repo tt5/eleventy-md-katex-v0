@@ -1,3 +1,4 @@
-npx run build
-cd _site
-surge . ill-calendar.surge.sh
+npm run start
+
+npm run build
+surge ./_site ill-calendar.surge.sh

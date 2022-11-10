@@ -1,1 +1,0 @@
-/home/n/data/p/markdown/build/out/progr-vim.md

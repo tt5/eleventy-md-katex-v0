@@ -1,9 +1,16 @@
 const katex = require("katex");
 const { DateTime } = require("luxon");
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
+const markdownIt = require("markdown-it");
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.setUseGitIgnore(false);
+
+  let options = {
+
+  };
+
+  eleventyConfig.setLibrary("md", markdownIt(options));
 
   eleventyConfig.addFilter("latexdisplay", (content) => {
     return content.replace(/\$\$([\s\S]+?)\$\$/g, (_, equation) => {
@@ -12,6 +19,8 @@ module.exports = function (eleventyConfig) {
         .replace(/&lt;/g, "<")
         .replace(/&gt;/g, ">")
         .replace(/&amp;/g, "&")
+        .replace(/<em>/g, "_")
+        .replace(/<\/em>/g, "_")
         .replace(/\\\n/g, "\\\\");
       console.log(equation)
 
@@ -28,6 +37,8 @@ module.exports = function (eleventyConfig) {
         .replace(/&lt;/g, "<")
         .replace(/&gt;/g, ">")
         .replace(/&amp;/g, "&")
+        .replace(/<em>/g, "_")
+        .replace(/<\/em>/g, "_")
         .replace(/\\\n/g, "\\\\");
 
       return katex.renderToString(cleanEquation, {
